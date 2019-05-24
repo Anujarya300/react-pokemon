@@ -12,13 +12,13 @@ class Routes extends React.Component<any, any> {
     renderRoutes(routes: Array<RouteConfigInterface>) {
         let routeList: Array<any> = [];
 
-        routes.forEach(({component: Component, path, childRoutes, ...rest}) => {
+        routes.forEach(({ component: Component, path, childRoutes, ...rest }) => {
             routeList.push(
                 <Route
                     exact
                     key={path}
                     path={path}
-                    render={props => { let combinedProps = {...rest, ...props}; return <Component {...combinedProps}/>}}
+                    render={props => { let combinedProps = { ...rest, ...props }; return <Component {...combinedProps} /> }}
                     {...rest}
                 />
             );
@@ -32,13 +32,9 @@ class Routes extends React.Component<any, any> {
     render() {
         return (
             <BrowserRouter>
-                <div>
-                    <main role="main">
-                        <Switch>
-                            {this.renderRoutes(routes)}
-                        </Switch>
-                    </main>
-                </div>
+                <Switch>
+                    {this.renderRoutes(routes)}
+                </Switch>
             </BrowserRouter>
         );
     }

@@ -11,14 +11,14 @@ export interface loaderActionsInterface {
 function startLoader(message: string) {
     return {
         type: LOADER_START,
-        payload: message
+        response: message
     } as Action;
 }
 
 function stopLoader() {
     return {
         type: LOADER_STOP,
-        payload: null as any
+        response: null as any
     } as Action;
 }
 

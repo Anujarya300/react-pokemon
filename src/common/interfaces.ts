@@ -1,5 +1,7 @@
 
 export interface Action {
     type: string;
-    payload: any;
+    response: any;
+    params: any;
+    error: any;
 }

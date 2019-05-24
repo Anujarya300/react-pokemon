@@ -6,7 +6,7 @@ export function helloAction(message: any): Function {
     return function (dispatch: any, getState: Function) {
         return dispatch({
             type: GET_HELLO,
-            payload: message
+            response: message
         } as Action);
     }
 }

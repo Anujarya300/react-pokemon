@@ -1,10 +1,12 @@
 
 import { combineReducers } from 'redux';
-import { HelloReducer } from "../components/hello/reducers";
+import { helloReducer } from "../components/hello/reducers";
 import { StateInterface } from './store';
-import { LoaderReducer } from '../components/app/reducers/loaderReducer';
+import { loaderReducer } from '../components/app/reducers/loaderReducer';
+import { pokemonReducer } from '../components/pokemon/reducers';
 
 export default combineReducers<StateInterface>({
-    loader: LoaderReducer,
-    hello: HelloReducer,
+    loader: loaderReducer,
+    hello: helloReducer,
+    pokemonModel: pokemonReducer
 });

@@ -16,6 +16,9 @@ module.exports = {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx", ".js", ".json"]
     },
+    devServer: {
+        historyApiFallback: true
+    },
     module: {
         rules: [
             { test: /\.ts(x?)$/, loader: "awesome-typescript-loader" },

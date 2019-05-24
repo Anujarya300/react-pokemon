@@ -1,4 +1,5 @@
 import * as React from "react";
+import { withRouter } from "react-router";
 import TestComponent from "../../test/components/testComponent";
 import { helloAction } from "../actions";
 import { connect } from "react-redux";
@@ -7,6 +8,7 @@ import { HelloModel } from "../models";
 export interface HelloProps {
     helloAction?: (msg: string) => {};
     hello?: HelloModel;
+    history?: any;
 }
 
 interface State {
@@ -36,15 +38,16 @@ class HelloComponent extends React.Component<HelloProps, State> {
     }
 
     render() {
-        const { hello = {} as HelloModel } = this.props;
+        const { hello = {} as HelloModel, history } = this.props;
         return (<div>
             <h1>Pokemon</h1>
             <TestComponent count={this.state.count} />
             <button onClick={this.displayCount}>Test state</button>
             <button onClick={this.displayMsg}>Test redux action</button>
+            <button onClick={()=> history.push("/pokemon")}>GO to Pokemon</button>
             <span>{hello.message}</span>
         </div>)
     }
 }
 
-export default HelloComponent;
+export default withRouter(HelloComponent);
