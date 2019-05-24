@@ -1,12 +1,13 @@
-import { Action } from "../../../common/interfaces";
+import { Action } from '../../../common/interfaces';
 
-export const GET_HELLO = "GET_HELLO";
+export const GET_HELLO = 'GET_HELLO';
 
 export function helloAction(message: any): Function {
     return function (dispatch: any, getState: Function) {
-        return dispatch({
+        const result: Action = {
             type: GET_HELLO,
-            response: message
-        } as Action);
-    }
+            response: message,
+        };
+        return dispatch(result);
+    };
 }

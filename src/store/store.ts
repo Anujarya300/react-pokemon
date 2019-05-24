@@ -6,18 +6,13 @@ import api from '../middlewares/api';
 import { PokemonModel } from '../components/pokemon/models';
 
 export interface StateInterface {
-    loader: any,
-    hello: HelloModel,
-    pokemonModel: PokemonModel
+    loader: any;
+    hello: HelloModel;
+    pokemonModel: PokemonModel;
 }
 
-const iState = <StateInterface>{
-};
+const iState = {} as any;
 
 export default function configureStore(initialState = iState) {
-    return createStore(
-        rootReducer,
-        initialState,
-        applyMiddleware(thunk, api)
-    );
+    return createStore(rootReducer, initialState, applyMiddleware(thunk, api));
 }

@@ -1,8 +1,11 @@
-import { Pokemon } from "./pokemon";
+import { Pokemon } from './pokemon';
 
 export class PokemonModel {
-    pokemons: Array<Pokemon>;
+    pokemons: Pokemon[];
+
     count: number;
+
     next: string;
+
     previous: string;
 }

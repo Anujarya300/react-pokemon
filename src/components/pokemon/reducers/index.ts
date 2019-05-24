@@ -1,1 +1,1 @@
-export * from "./pokemonReducer";
+export * from './pokemonReducer';

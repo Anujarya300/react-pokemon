@@ -1,21 +1,21 @@
-
+import { AxiosRequestConfig } from 'axios';
 import axios from 'axios';
-import { AxiosRequestConfig} from 'axios';
 
-import { apiConfigInterface, apiConfig } from '../config/apiConfig';
 
-export interface apiInterface {
-    getDataApiBaseUrl(apiConfig: apiConfigInterface): string;
-    getApplicationApiBaseUrl(apiConfig: apiConfigInterface): string;
-    callAPI(requestConfig: Object): Promise<any>;
+import { ApiConfigInterface, apiConfig } from '../config/apiConfig';
+
+export interface ApiInterface {
+    getDataApiBaseUrl(apiConfig: ApiConfigInterface): string;
+    getApplicationApiBaseUrl(apiConfig: ApiConfigInterface): string;
+    callAPI(requestConfig: Record<string, any>): Promise<any>;
 }
 
-export function getBase(config: apiConfigInterface = apiConfig) {
-    return config.protocol + '://' + config.host;
+export function getBase(config: ApiConfigInterface = apiConfig) {
+    return `${config.protocol}://${config.host}`;
 }
 
-export function getDataApiBaseUrl(config: apiConfigInterface = apiConfig) {
-    return getBase(config) + '/' + config.dataApiUrl;
+export function getDataApiBaseUrl(config: ApiConfigInterface = apiConfig) {
+    return `${getBase(config)}/${config.dataApiUrl}`;
 }
 
 export function callAPI(requestConfig: AxiosRequestConfig) {
@@ -25,7 +25,7 @@ export function callAPI(requestConfig: AxiosRequestConfig) {
 export function setHeaders(requestConfig: AxiosRequestConfig) {
     requestConfig.headers = {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        Accept: 'application/json',
     };
     return requestConfig;
 }

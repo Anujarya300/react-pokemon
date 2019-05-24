@@ -1,1 +1,1 @@
-export * from "./loaderReducer";
+export * from './loaderReducer';
