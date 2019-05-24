@@ -1,16 +1,14 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-
-const htmlWebpackPlugin = new HtmlWebPackPlugin({
-    template: "index.html",
-    filename: "./index.html"
-});
+const webpack = require("webpack");
+const path = require("path");
 
 module.exports = {
     entry: "./src/index.tsx",
     output: {
         filename: "bundle.js",
-        path: __dirname + "/dist"
+        path: path.join(__dirname, "./public")
     },
+
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
 
@@ -20,15 +18,16 @@ module.exports = {
     },
     module: {
         rules: [
+            { test: /\.ts(x?)$/, loader: "awesome-typescript-loader" },
             {
                 test: /\.js$/,
+                enforce: "post",
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader"
                 }
             },
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
             {
                 test: /\.css$/,
                 use: [
@@ -49,5 +48,9 @@ module.exports = {
             }
         ]
     },
-    plugins: [htmlWebpackPlugin]
+    plugins: [
+        new webpack.ProvidePlugin({
+            "React": "react",
+        }),
+    ]
 };
