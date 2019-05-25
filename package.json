@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open --port 3000",
     "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "eslint --ignore-path .gitignore 'src/**'",
     "lint-fix": "eslint 'src/**' --fix"
   },
@@ -32,13 +32,23 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.0.0",
     "awesome-typescript-loader": "^5.2.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^2.1.1",
+    "@types/enzyme": "^3.1.12",
+    "@types/enzyme-adapter-react-16": "^1.0.2",
+    "@types/jest": "^23.3.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
+    "jest": "^23.4.2",
+    "ts-jest": "^23.0.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-react-app": "^4.0.1",
