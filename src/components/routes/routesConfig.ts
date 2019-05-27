@@ -1,15 +1,14 @@
-import HelloContainer from '../hello/containers/helloContainer';
 import PokemonContainer from '../pokemon/containers/pokemonContainer';
 import { RouteConfigInterface } from './model';
 
 export const routes: RouteConfigInterface[] = [
     {
         path: '/',
-        component: HelloContainer,
+        component: PokemonContainer,
         childRoutes: [],
     },
     {
-        path: '/pokemon',
+        path: '/evolution',
         component: PokemonContainer,
         childRoutes: [],
     },

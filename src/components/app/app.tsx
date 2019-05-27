@@ -22,7 +22,7 @@ class App extends React.Component<Props, any> {
 
     render() {
         return (
-            <div>
+            <div style={{marginTop: "10px"}}>
                 <Routes />
             </div>
         );

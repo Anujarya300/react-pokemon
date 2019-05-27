@@ -1,42 +1,56 @@
 import * as React from 'react';
-import { PokemonModel } from '../models';
+import { Row, Col } from 'react-bootstrap';
+import { Pokemon } from '../models/pokemon';
+import HeaderText from '../../common/headerText';
+import PokemonDetailComponent from './pokemonDetailComponent';
+import PokemonStatComponent from './pokemonStatComponent';
 
 export interface PokemonProps {
-    pokemon?: PokemonModel;
+    pokemon?: Pokemon;
+    onPokemonClicked: (pokemon: Pokemon) => void;
 }
 
-interface State {
-    count: number;
-}
-
-class PokemonComponent extends React.Component<PokemonProps, State> {
+class PokemonComponent extends React.Component<PokemonProps, {}> {
     constructor(props: any, state: any) {
         super(props, state);
         this.state = {
-            count: 0,
         };
+        this.onPokemonClicked = this.onPokemonClicked.bind(this);
+    }
+
+    componentDidMount() {
+
+    }
+
+    onPokemonClicked() {
+        this.props.onPokemonClicked(this.props.pokemon);
     }
 
     render() {
-        const { pokemon = new PokemonModel() } = this.props;
-        if (
-            !this.props.pokemon
-      || !this.props.pokemon.pokemons
-      || !this.props.pokemon.pokemons.length
-        ) {
-            return <h1>No Pokemons</h1>;
+        const pokemon = this.props.pokemon;
+        if (!pokemon) {
+            return null;
         }
         return (
-            <div>
-                <h1>Pokemons</h1>
-                <ul>
-                    {pokemon.pokemons.map(p => (
-                        <li>
-                            <span>{`Name: ${p.name}  > Url: ${p.url}`}</span>
-                        </li>
-                    ))}
-                </ul>
+            <div style={{ margin: "3%" }}>
+                <div onClick={this.onPokemonClicked}>
+                    <HeaderText text={pokemon.name} />
+                    <Row>
+                        <Col style={{ width: "10rem" }}>
+                            <img alt={pokemon.name} src={`https://img.pokemondb.net/artwork/${pokemon.name}.jpg`} width="150" height="150" />
+                        </Col>
+                        <Col style={{ width: "11rem" }}>
+                            <PokemonDetailComponent pokemon={pokemon} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <PokemonStatComponent pokemon={pokemon} />
+                        </Col>
+                    </Row>
+                </div>
             </div>
+
         );
     }
 }

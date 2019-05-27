@@ -28,6 +28,16 @@ const apiMiddleware: Middleware = (store: Store<any>) => (next: any): any => (
     const [requestType, successType, failureType] = types;
     next(actionWith({ type: requestType }));
 
+    if (callAPI.responseData) {
+        next(
+            actionWith({
+                response: callAPI.responseData,
+                type: successType,
+                params: action.params,
+            }),
+        );
+    }
+
     return api
         .callAPI(callAPI)
         .then((response) => {
