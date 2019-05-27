@@ -1,0 +1,46 @@
+.label-key {
+  color: #737373; }
+
+.label-value {
+  float: right; }
+.arrow-container {
+  margin-right: 30px;
+  margin-top: 50%; }
+
+.move-list {
+  margin-right: 5px; }
+
+.evo-container {
+  width: 25%; }
+
+.evo-label {
+  margin: auto; }
+
+.evo-type-label {
+  margin: auto;
+  color: #fc3; }
+.pokemon-container {
+  margin: 3%; }
+
+.pokemon-img {
+  width: 7rem; }
+
+.pokemon-detail {
+  width: 14rem; }
+
+.hz-line {
+  margin-top: 0.1rem;
+  margin-bottom: 0; }
+
+.btn-page {
+  margin: 5px; }
+
+.filter-type {
+  width: 100px; }
+
+.progress-bar {
+  height: 0.7rem; }
+.layout {
+  margin-top: 10px; }
+
+/*# sourceMappingURL=site.css.map*/
