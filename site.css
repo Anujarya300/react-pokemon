@@ -3,22 +3,6 @@
 
 .label-value {
   float: right; }
-.arrow-container {
-  margin-right: 30px;
-  margin-top: 50%; }
-
-.move-list {
-  margin-right: 5px; }
-
-.evo-container {
-  width: 25%; }
-
-.evo-label {
-  margin: auto; }
-
-.evo-type-label {
-  margin: auto;
-  color: #fc3; }
 .pokemon-container {
   margin: 3%; }
 
@@ -42,5 +26,21 @@
   height: 0.7rem; }
 .layout {
   margin-top: 10px; }
+.arrow-container {
+  margin-right: 30px;
+  margin-top: 50%; }
+
+.move-list {
+  margin-right: 5px; }
+
+.evo-container {
+  width: 25%; }
+
+.evo-label {
+  margin: auto; }
+
+.evo-type-label {
+  margin: auto;
+  color: #fc3; }
 
 /*# sourceMappingURL=site.css.map*/
