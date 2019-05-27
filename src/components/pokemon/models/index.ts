@@ -1,4 +1,3 @@
-export * from './pokemonModel';
-export * from './pokemon';
-export * from './pokemonTypes';
-export * from "./evolution";
+export * from "./pokemon";
+export * from "./pokemonModel";
+export * from "./pokemonTypes";

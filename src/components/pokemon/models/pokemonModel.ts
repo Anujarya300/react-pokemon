@@ -1,6 +1,6 @@
 import { Pokemon } from './pokemon';
 import { PokemonType } from './pokemonTypes';
-import { Evolution } from './evolution';
+import { Evolution } from '../../evolution/models/evolution';
 
 export class PokemonModel {
     pokemons: Pokemon[];

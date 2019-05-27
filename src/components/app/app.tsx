@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-
 import Routes from '../routes/components/Routes';
 import { StateInterface } from '../../store';
+import './style/app.scss';
 
 interface Props {
     loader?: any;
@@ -10,19 +10,9 @@ interface Props {
 
 class App extends React.Component<Props, any> {
 
-    componentWillMount() {}
-
-    componentDidMount() {}
-
-    componentWillUpdate() {}
-
-    componentDidUpdate() {}
-
-    componentWillUnmount() {}
-
     render() {
         return (
-            <div style={{marginTop: "10px"}}>
+            <div className="layout">
                 <Routes />
             </div>
         );

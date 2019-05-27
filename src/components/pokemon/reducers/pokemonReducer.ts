@@ -8,9 +8,6 @@ import {
     GET_POKEMON_TYPES_FAILURE,
     GET_POKEMON_TYPES_REQUEST,
     GET_POKEMON_TYPES_SUCCESS,
-    GET_EVOLUTION_FAILURE,
-    GET_EVOLUTION_REQUEST,
-    GET_EVOLUTION_SUCCESS,
 } from '../actions';
 import { Action } from '../../../common';
 
@@ -61,18 +58,6 @@ export function pokemonReducer(state: any = {}, action: Action): any {
                 types: action.response.data.results,
             });
         case GET_POKEMON_TYPES_FAILURE:
-            return Object.assign({}, state, {
-                msg: action.error.data,
-            });
-        case GET_EVOLUTION_REQUEST:
-            return Object.assign({}, state, {
-                evolution: {}
-            });
-        case GET_EVOLUTION_SUCCESS:
-            return Object.assign({}, state, {
-                evolution: action.response.data,
-            });
-        case GET_EVOLUTION_FAILURE:
             return Object.assign({}, state, {
                 msg: action.error.data,
             });

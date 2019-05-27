@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { Row, Col } from 'react-bootstrap';
+import { withRouter, } from 'react-router';
 import { Pokemon } from '../models/pokemon';
 import HeaderText from '../../common/headerText';
 import PokemonDetailComponent from './pokemonDetailComponent';
 import PokemonStatComponent from './pokemonStatComponent';
+import { firstUC } from '../../../common/utils';
+import '../styles/pokemon.scss';
 
 export interface PokemonProps {
     pokemon?: Pokemon;
-    onPokemonClicked: (pokemon: Pokemon) => void;
+    history?: any;
 }
 
 class PokemonComponent extends React.Component<PokemonProps, {}> {
@@ -18,12 +21,8 @@ class PokemonComponent extends React.Component<PokemonProps, {}> {
         this.onPokemonClicked = this.onPokemonClicked.bind(this);
     }
 
-    componentDidMount() {
-
-    }
-
     onPokemonClicked() {
-        this.props.onPokemonClicked(this.props.pokemon);
+        this.props.history.push(`/evolution/${this.props.pokemon.id}`);
     }
 
     render() {
@@ -32,14 +31,14 @@ class PokemonComponent extends React.Component<PokemonProps, {}> {
             return null;
         }
         return (
-            <div style={{ margin: "3%" }}>
+            <div className="pokemon-container">
                 <div onClick={this.onPokemonClicked}>
-                    <HeaderText text={pokemon.name} />
+                    <HeaderText text={firstUC(pokemon.name)} />
                     <Row>
-                        <Col style={{ width: "10rem" }}>
+                        <Col className="pokemon-img">
                             <img alt={pokemon.name} src={`https://img.pokemondb.net/artwork/${pokemon.name}.jpg`} width="150" height="150" />
                         </Col>
-                        <Col style={{ width: "11rem" }}>
+                        <Col className="pokemon-detail">
                             <PokemonDetailComponent pokemon={pokemon} />
                         </Col>
                     </Row>
@@ -55,4 +54,4 @@ class PokemonComponent extends React.Component<PokemonProps, {}> {
     }
 }
 
-export default PokemonComponent;
+export default withRouter(PokemonComponent);

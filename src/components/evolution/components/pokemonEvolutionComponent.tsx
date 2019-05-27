@@ -1,14 +1,16 @@
 /* eslint  @typescript-eslint/camelcase: 0 */
 import * as React from 'react';
-import { Pokemon, EvolutionChain } from '../models';
-import { Evolution } from '../models';
+import { Pokemon, PokemonModel } from '../../pokemon/models';
+import { Evolution, EvolutionChain } from '../models';
 import SingleEvolveComponent from './singleEvolveComponent';
 import { Container, Row, Col } from 'react-bootstrap';
+import EvolutionArrowComponent from './evolutionArrowComponent';
 
 
 export interface PokemonEvolutionComponentProps {
     pokemon: Pokemon;
     evolution: Evolution;
+    pokemonModel: PokemonModel;
 }
 
 const PokemonEvolutionComponent: React.SFC<PokemonEvolutionComponentProps> = props => {
@@ -37,32 +39,15 @@ const PokemonEvolutionComponent: React.SFC<PokemonEvolutionComponentProps> = pro
     function renderEvolution(level: number, name: string, depth: number) {
         const pokemon: any = { name };
         return (
-            <div key={name} style={{ width: "25%" }}>
+            <div key={name} className="evo-container">
                 <Row>
-                    { name !== props.evolution.chain.species.name && renderArrow(level)}
+                    {name !== props.evolution.chain.species.name
+                        && <EvolutionArrowComponent text={(level || "").toString()} />}
                     <Col>
-                        <SingleEvolveComponent pokemon={pokemon} />
+                        <SingleEvolveComponent pokemonModel={props.pokemonModel} pokemon={pokemon} />
                     </Col>
-
                 </Row>
             </div>
-        )
-    }
-
-    function renderArrow(level: number) {
-        return (
-            <Col style={{
-                margin: "auto",
-                marginRight: "30px",
-            }}>
-                {level &&
-                    <Row>
-                        <span>{`(Level ${level})`}</span>
-                    </Row>}
-                <Row>
-                    <span>{"------->"}</span>
-                </Row>
-            </Col>
         )
     }
     renderEvolutionChain([props.evolution.chain]);
@@ -78,5 +63,7 @@ const PokemonEvolutionComponent: React.SFC<PokemonEvolutionComponentProps> = pro
         </div>
     )
 }
+
+
 
 export default PokemonEvolutionComponent;

@@ -1,7 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 
-
 import { ApiConfigInterface, apiConfig } from '../config/apiConfig';
 
 export interface ApiInterface {

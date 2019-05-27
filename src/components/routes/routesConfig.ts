@@ -1,4 +1,5 @@
 import PokemonContainer from '../pokemon/containers/pokemonContainer';
+import EvolutionContainer from '../evolution/containers/evolutionContainer';
 import { RouteConfigInterface } from './model';
 
 export const routes: RouteConfigInterface[] = [
@@ -8,8 +9,8 @@ export const routes: RouteConfigInterface[] = [
         childRoutes: [],
     },
     {
-        path: '/evolution',
-        component: PokemonContainer,
+        path: '/evolution/:id',
+        component: EvolutionContainer,
         childRoutes: [],
     },
 ];
