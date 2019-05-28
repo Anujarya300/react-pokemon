@@ -211,7 +211,7 @@ source: https://pokeapi.co/api/v2/evolution-chain/1
         }
     ```
     
-    Evolution api response json is recursive in nature. `PokemonEvolutionComponent` constructs a dynamic components elements by passing required config to a generic json tree traversal method which is written in `src/common/utils/renderNestedComponent.ts`.
+Evolution api response json is recursive in nature. `PokemonEvolutionComponent` constructs a dynamic components elements by passing required config to a generic json tree traversal method which is written in `src/common/utils/renderNestedComponent.ts`.
     
 #### API Call middleware
 `src/moddlewares/api.ts`- 
