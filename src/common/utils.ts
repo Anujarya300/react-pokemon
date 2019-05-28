@@ -1,3 +1,4 @@
+import { NestedComponentParam } from "./interfaces";
 
 export function firstUC(text: string) {
     if (!text) {
@@ -10,4 +11,21 @@ export function getUrlParamValue(props: any, fieldName: string) {
     const { match = {} } = props;
     const { params = {} } = match;
     return params[fieldName];
+}
+
+export function renderNestedComponent<T>(param: NestedComponentParam<T>): any {
+    if (!param.parent || !param.parent.length) {
+        return null;
+    }
+    if (!param.depth) {
+        param.depth = -1;
+    }
+    param.depth++;
+    param.parent.forEach(x => {
+        const data: any = param.extractData(x);
+        data.depth = param.depth;
+        param.outputElm.push(param.renderFn(data));
+        param.parent = (x as any)[param.nestedFieldName];
+        return renderNestedComponent(param);
+    });
 }

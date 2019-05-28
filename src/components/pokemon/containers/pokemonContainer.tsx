@@ -7,7 +7,7 @@ import PokemonMainComponent from '../components/pokemonMainComponent';
 import { StateInterface } from '../../../store';
 
 const mapStateToProps = (state: StateInterface) => ({
-    pokemon: state.pokemonModel,
+    pokemonModel: state.pokemonModel,
 });
 
 const mapDispatchToProps = {

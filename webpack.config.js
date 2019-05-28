@@ -4,12 +4,12 @@ const path = require("path");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
-//"webpack-dev-server --config webpack.dev.config.js --port=9091 --content-base public/ --history-api-fallback --https",
+
 module.exports = {
     entry: "./src/index.tsx",
     output: {
         filename: "bundle.js",
-        path: path.join(__dirname, "./public")
+        path: path.join(__dirname, "./build")
     },
 
     // Enable sourcemaps for debugging webpack's output.

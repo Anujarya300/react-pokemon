@@ -5,6 +5,7 @@ import { Evolution, EvolutionChain } from '../models';
 import SingleEvolveComponent from './singleEvolveComponent';
 import { Container, Row, Col } from 'react-bootstrap';
 import EvolutionArrowComponent from './evolutionArrowComponent';
+import { renderNestedComponent } from '../../../common/utils';
 
 
 export interface PokemonEvolutionComponentProps {
@@ -20,29 +21,14 @@ const PokemonEvolutionComponent: React.SFC<PokemonEvolutionComponentProps> = pro
     }
 
     const elements: any[] = [];
-    let depth = -1;
 
-    function renderEvolutionChain(evolves_to: EvolutionChain[]): any {
-        if (!evolves_to || !evolves_to.length) {
-            return null;
-        }
-        depth++;
-
-        evolves_to.forEach(x => {
-            const { min_level, item = {} } = x.evolution_details[0] || {} as any;
-            elements.push(renderEvolution(min_level || (item || {}).name,
-                x.species.name, depth, ));
-            return renderEvolutionChain(x.evolves_to);
-        });
-    }
-
-    function renderEvolution(level: number, name: string, depth: number) {
-        const pokemon: any = { name };
+    const renderEvolution = (data: any) => {
+        const pokemon: any = { name: data.name };
         return (
-            <div key={name} className="evo-container">
+            <div key={data.name} className="evo-container">
                 <Row>
-                    {name !== props.evolution.chain.species.name
-                        && <EvolutionArrowComponent text={(level || "").toString()} />}
+                    {data.name !== props.evolution.chain.species.name
+                        && <EvolutionArrowComponent text={(data.level || "").toString()} />}
                     <Col>
                         <SingleEvolveComponent pokemonModel={props.pokemonModel} pokemon={pokemon} />
                     </Col>
@@ -50,7 +36,21 @@ const PokemonEvolutionComponent: React.SFC<PokemonEvolutionComponentProps> = pro
             </div>
         )
     }
-    renderEvolutionChain([props.evolution.chain]);
+
+    renderNestedComponent<EvolutionChain>({
+        parent: [props.evolution.chain],
+        extractData: (x: EvolutionChain) => {
+            const { min_level, item = {} } = x.evolution_details[0] || {} as any;
+            return {
+                level: min_level || (item || {}).name,
+                name: x.species.name
+            };
+        },
+        nestedFieldName: "evolves_to",
+        outputElm: elements,
+        renderFn: renderEvolution,
+        depth: null
+    })
 
     return (
         <div>

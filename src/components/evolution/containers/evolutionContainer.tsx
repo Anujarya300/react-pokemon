@@ -1,5 +1,9 @@
 import { connect } from 'react-redux';
 import { getPokemonEvolutionAction } from '../actions/evolutionAction';
+import {
+    getPokemonAction,
+    getPokemonTypesAction
+} from '../../pokemon/actions';
 import { StateInterface } from '../../../store';
 
 import EvolutionComponent from '../components/evolutionComponent';
@@ -11,6 +15,8 @@ const mapStateToProps = (state: StateInterface) => ({
 
 const mapDispatchToProps = {
     getPokemonEvolutionAction,
+    getPokemonAction,
+    getPokemonTypesAction
 };
 
 export default connect<any, any, any>(

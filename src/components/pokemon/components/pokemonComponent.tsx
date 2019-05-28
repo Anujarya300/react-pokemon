@@ -18,10 +18,9 @@ class PokemonComponent extends React.Component<PokemonProps, {}> {
         super(props, state);
         this.state = {
         };
-        this.onPokemonClicked = this.onPokemonClicked.bind(this);
     }
 
-    onPokemonClicked() {
+    onPokemonClicked = () => {
         this.props.history.push(`/evolution/${this.props.pokemon.id}`);
     }
 

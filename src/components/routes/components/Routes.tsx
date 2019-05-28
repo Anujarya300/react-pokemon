@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 
 import { routes } from '../routesConfig';
 import { RouteConfigInterface } from '../model';
@@ -32,9 +32,9 @@ class Routes extends React.Component<any, any> {
 
     render() {
         return (
-            <BrowserRouter>
+            <HashRouter>
                 <Switch>{this.renderRoutes(routes)}</Switch>
-            </BrowserRouter>
+            </HashRouter>
         );
     }
 }

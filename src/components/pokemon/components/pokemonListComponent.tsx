@@ -3,7 +3,6 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { PokemonModel, Pokemon } from '../models';
 import PokemonComponent from './pokemonComponent';
 import FilterText from '../../common/filterText';
-import Loader from '../../common/Loader';
 
 export interface PokemonListProps {
     pokemonModel?: PokemonModel;
@@ -22,25 +21,21 @@ class PokemonListComponent extends React.Component<PokemonListProps, State> {
             selectedFilter: "",
             selectedPokemon: null,
         };
-        this.fetchNextPage = this.fetchNextPage.bind(this);
-        this.fetchPrevPage = this.fetchPrevPage.bind(this);
-        this.onFilterChanged = this.onFilterChanged.bind(this);
-        this.getFilteredPokemons = this.getFilteredPokemons.bind(this);
     }
 
-    fetchNextPage() {
+    fetchNextPage = () => {
         this.props.fetchNextOrPrevPage(this.props.pokemonModel.next);
     }
 
-    fetchPrevPage() {
+    fetchPrevPage = () => {
         this.props.fetchNextOrPrevPage(this.props.pokemonModel.previous);
     }
 
-    onFilterChanged(selected: string[]) {
+    onFilterChanged = (selected: string[]) => {
         this.setState({ selectedFilter: selected[0] });
     }
 
-    renderPageBtns() {
+    renderPageBtns = () => {
         return (
             <Row>
                 <Button className="btn-page" onClick={this.fetchPrevPage}>{"<< Previous"}</Button>
@@ -49,7 +44,7 @@ class PokemonListComponent extends React.Component<PokemonListProps, State> {
         );
     }
 
-    getFilteredPokemons() {
+    getFilteredPokemons = () => {
         if (!this.state.selectedFilter) {
             return this.props.pokemonModel.pokemons;
         }
@@ -60,14 +55,6 @@ class PokemonListComponent extends React.Component<PokemonListProps, State> {
 
     render() {
         const { pokemonModel = new PokemonModel() } = this.props;
-        if (
-            !pokemonModel
-            || !pokemonModel.pokemons
-            || !pokemonModel.pokemons.length
-            || !pokemonModel.types.length
-        ) {
-            return <Loader />
-        }
         const types = pokemonModel.types.map(x => x.name);
         const filteredPokemons = this.getFilteredPokemons();
         return (
