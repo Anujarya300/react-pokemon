@@ -14,7 +14,7 @@ React-Pokemon Project
 
 React-Pokemon Project Details
 ==============
-1. Displaying all Pokemons with their avatar, stats, basic information and type with filter by Pokemon Type.
+1. Displaying all Pokemons with their avatar, stats, basic information and type with filter by Pokemon Type with **Infinite Scrolling**.
 2. Show moves list and evolution information (Pokemon will they evolve into AND what Pokemon have they evolved from) on each Pokemon click.
 
 #### Demo app: https://anujarya300.github.io/react-pokemon
@@ -107,7 +107,7 @@ Instead of having all components in components folder or all actions in actions 
 All features related with pokemon information, we have created a module folder pokemon having all dependent components, actions etc inside it.
 
 ### React with Redux
-    Redux lets data sharing between components through store, connect and dispatch actions to the store. In our case `evolutionContainer`     needs data from two sources i.e from api server and second one is from store (for selected pokemon).
+  Redux lets data sharing between components through store, connect and dispatch actions to the store. In our case `evolutionContainer`     needs data from two sources i.e from api server and second one is from store (for selected pokemon).
     
 ### Components structure and responsibilities
 
@@ -118,7 +118,7 @@ All features related with pokemon information, we have created a module folder p
            <FilterText>
                 ...
            </FilterText>
-           <PokemonListComponent>
+           <InfiniteScroll>
                ...
                 <PokemonComponent>
                 ...
@@ -129,7 +129,7 @@ All features related with pokemon information, we have created a module folder p
                         ...
                     </PokemonStatComponent>
                 </PokemonComponent>
-            </PokemonListComponent>
+           </InfiniteScroll>
     </PokemonContainer>
    ``` 
     
@@ -141,8 +141,9 @@ All features related with pokemon information, we have created a module folder p
 2. FilterText- A stateless component
     * Render Typeahead filter
 
-3. PokemonListComponent- 
-    * Responsible for rendering Pokemons in a grid.
+3. InfiniteScroll- 
+    * Responsible for rendering Pokemons in a grid with infinite scrolling.
+    * Infinte scrolling for filter selected also.
 4. PokemonComponent-
     * Renders a single Pokemon view
 5. PokemonDetailComponent-
