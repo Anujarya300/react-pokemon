@@ -24,8 +24,6 @@
 
 .progress-bar {
   height: 0.7rem; }
-.layout {
-  margin-top: 10px; }
 .arrow-container {
   margin-right: 30px;
   margin-top: 50%; }
@@ -42,5 +40,7 @@
 .evo-type-label {
   margin: auto;
   color: #fc3; }
+.layout {
+  margin-top: 10px; }
 
 /*# sourceMappingURL=site.css.map*/
