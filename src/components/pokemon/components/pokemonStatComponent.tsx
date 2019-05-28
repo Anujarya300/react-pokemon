@@ -28,7 +28,7 @@ const PokemonStatComponent: React.SFC<PokemonStatComponentProps> = props => {
             {Object.keys(displayFields).map(x =>
                 <div key={x}>
                     <KeyValue key={x} keyStr={x} value={displayFields[x]} />
-                    <ProgressBar className="progress-bar" now={displayFields[x]} />
+                    <ProgressBar className="progress-hz-bar" now={displayFields[x]} />
                 </div>
             )}
         </div>
