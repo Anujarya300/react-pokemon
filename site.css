@@ -3,6 +3,22 @@
 
 .label-value {
   float: right; }
+.arrow-container {
+  margin-right: 30px;
+  margin-top: 50%; }
+
+.move-list {
+  margin-right: 5px; }
+
+.evo-container {
+  width: 25%; }
+
+.evo-label {
+  margin: auto; }
+
+.evo-type-label {
+  margin: auto;
+  color: #fc3; }
 .pokemon-container {
   margin: 3%; }
 
@@ -24,22 +40,6 @@
 
 .progress-bar {
   height: 0.7rem; }
-.arrow-container {
-  margin-right: 30px;
-  margin-top: 50%; }
-
-.move-list {
-  margin-right: 5px; }
-
-.evo-container {
-  width: 25%; }
-
-.evo-label {
-  margin: auto; }
-
-.evo-type-label {
-  margin: auto;
-  color: #fc3; }
 .layout {
   margin-top: 10px; }
 
