@@ -1,91 +1,33 @@
 import * as React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Button } from 'react-bootstrap';
 import { PokemonModel, Pokemon } from '../models';
 import PokemonComponent from './pokemonComponent';
-import FilterText from '../../common/filterText';
+import NoDataFound from '../../common/noDataFound';
 
 export interface PokemonListProps {
-    pokemonModel?: PokemonModel;
-    fetchNextOrPrevPage: (url: string) => {};
+    pokemons?: Array<Pokemon>;
 }
 
-interface State {
-    selectedFilter: string;
-    selectedPokemon: Pokemon;
-}
-
-class PokemonListComponent extends React.Component<PokemonListProps, State> {
-    constructor(props: any, state: any) {
-        super(props, state);
-        this.state = {
-            selectedFilter: "",
-            selectedPokemon: null,
-        };
-    }
-
-    fetchNextPage = () => {
-        this.props.fetchNextOrPrevPage(this.props.pokemonModel.next);
-    }
-
-    fetchPrevPage = () => {
-        this.props.fetchNextOrPrevPage(this.props.pokemonModel.previous);
-    }
-
-    onFilterChanged = (selected: string[]) => {
-        this.setState({ selectedFilter: selected[0] });
-    }
-
-    renderPageBtns = () => {
-        return (
-            <Row>
-                <Button className="btn-page" onClick={this.fetchPrevPage}>{"<< Previous"}</Button>
-                <Button className="btn-page" onClick={this.fetchNextPage}>{"Next >>"}</Button>
-            </Row>
-        );
-    }
-
-    getFilteredPokemons = () => {
-        if (!this.state.selectedFilter) {
-            return this.props.pokemonModel.pokemons;
-        }
-        const pokemonsFilter = this.props.pokemonModel.pokemons
-            .filter(x => x.types.find(x => x.type.name === this.state.selectedFilter));
-        return pokemonsFilter;
-    }
+class PokemonListComponent extends React.Component<PokemonListProps, {}> {
 
     render() {
-        const { pokemonModel = new PokemonModel() } = this.props;
-        const types = pokemonModel.types.map(x => x.name);
-        const filteredPokemons = this.getFilteredPokemons();
+        const { pokemons = [] } = this.props;
+        if (!pokemons.length) {
+            return (
+                <Container>
+                    <NoDataFound text={"No data found"} />
+                </Container>)
+        }
         return (
             <div>
                 <Container>
                     <Row>
-                        <Col>
-                            <h1>Pokemon List</h1>
-                        </Col>
-                        <Col>
-                            {this.renderPageBtns()}
-                        </Col>
-                        <Col className="filter-type">
-                            <FilterText
-                                items={types}
-                                onFilterChanged={this.onFilterChanged}
-                                defaultSelected={types[0]}
-                                placeholder="Filter by Type"
-                            />
-                        </Col>
-                    </Row>
-                </Container>
-                <Container>
-                    <Row>
-                        {filteredPokemons.map(p => (
+                        {pokemons.map((p: Pokemon) => (
                             <PokemonComponent
                                 key={p.name}
                                 pokemon={p} />
                         ))}
                     </Row>
-                    {this.renderPageBtns()}
                 </Container>;
             </div>
 

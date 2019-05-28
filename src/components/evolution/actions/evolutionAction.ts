@@ -5,7 +5,20 @@ import { AxiosResponse } from 'axios';
 export const GET_EVOLUTION_REQUEST = 'GET_EVOLUTION_REQUEST';
 export const GET_EVOLUTION_SUCCESS = 'GET_EVOLUTION_SUCCESS';
 export const GET_EVOLUTION_FAILURE = 'GET_EVOLUTION_FAILURE';
+export const GET_EVOLUTION_CLEAR = 'GET_EVOLUTION_CLEAR';
 
+
+function clearEvolution() {
+    return {
+        type: GET_EVOLUTION_CLEAR
+    }
+}
+
+export function clearEvolutionAction(url: string): Function {
+    return function (dispatch: any, getState: Function) {
+        return dispatch(clearEvolution());
+    };
+}
 
 export function getPokemonEvolutionAction(url: string): Function {
     return function (dispatch: any, getState: Function) {

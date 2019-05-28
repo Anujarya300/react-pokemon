@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { PokemonModel } from '../../pokemon/models';
 import PokemonEvolutionComponent from './pokemonEvolutionComponent';
-import Loader from '../../common/Loader';
+import Loader from '../../common/loader';
 import { getUrlParamValue } from '../../../common/utils';
 import { EvolutionModel } from '../models/evolutionModel';
 
@@ -9,6 +9,7 @@ export interface EvolutionComponentProps {
     getPokemonAction: (url?: string) => {};
     getPokemonTypesAction: () => {};
     getPokemonEvolutionAction: (id: string) => {};
+    clearEvolutionAction: () => {};
     pokemonModel: PokemonModel;
     evolutionModel: EvolutionModel;
     match?: any;
@@ -24,6 +25,10 @@ export default class EvolutionComponent extends React.Component<EvolutionCompone
             this.props.getPokemonTypesAction();
         }
         this.props.getPokemonEvolutionAction(getUrlParamValue(this.props, "id"));
+    }
+
+    componentWillUnmount() {
+        this.props.clearEvolutionAction();
     }
 
     getSelectedPokemon = () => {

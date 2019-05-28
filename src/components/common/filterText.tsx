@@ -6,6 +6,7 @@ export interface FilterTextProps {
     defaultSelected?: any;
     onFilterChanged: (selected: any[]) => any;
     placeholder?: string;
+    selectedItem?: any;
 }
 
 const FilterText: React.SFC<FilterTextProps> = props => {
@@ -17,6 +18,7 @@ const FilterText: React.SFC<FilterTextProps> = props => {
                 options={props.items}
                 onChange={(selected) => props.onFilterChanged(selected)}
                 placeholder={props.placeholder}
+                selected={[props.selectedItem || ""]}
             />
         </div>
     )

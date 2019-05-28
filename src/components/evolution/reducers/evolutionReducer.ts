@@ -2,6 +2,7 @@ import {
     GET_EVOLUTION_FAILURE,
     GET_EVOLUTION_REQUEST,
     GET_EVOLUTION_SUCCESS,
+    GET_EVOLUTION_CLEAR
 } from '../actions';
 import { Action } from '../../../common';
 
@@ -27,6 +28,10 @@ export function evolutionReducer(state: any = {}, action: Action): any {
                 success: false,
                 error: true,
                 msg: action.error.data,
+            });
+        case GET_EVOLUTION_CLEAR:
+            return Object.assign({}, state, {
+                evolution: {}
             });
     }
     return state;
