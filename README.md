@@ -80,7 +80,7 @@ Browse Url: https://anujarya300.github.io/react-pokemon/#/
 Project Overview
 ===========
 
-1. Folder Structure: 
+### Folder Structure: 
 ```
   src/
     components/
@@ -106,10 +106,114 @@ Project Overview
 Instead of having all components in components folder or all actions in actions folder, our project organized with modular pattern.
 All features related with pokemon information, we have created a module folder pokemon having all dependent components, actions etc inside it.
 
-2. React with Redux
+### React with Redux
     Redux lets data sharing between components through store, connect and dispatch actions to the store. In our case `evolutionContainer`     needs data from two sources i.e from api server and second one is from store (for selected pokemon).
     
-3. 
+### Components structure and responsibilities
+
+#### Display Pokemon list with it's info and stats
+```
+    <PokemonContainer>
+        ...
+           <FilterText>
+                ...
+           </FilterText>
+           <PokemonListComponent>
+               ...
+                <PokemonComponent>
+                ...
+                    <PokemonDetailComponent>
+                        ...
+                    </PokemonDetailComponent>
+                    <PokemonStatComponent>
+                        ...
+                    </PokemonStatComponent>
+                </PokemonComponent>
+            </PokemonListComponent>
+    </PokemonContainer>
+   ``` 
     
+1. PokemonContainer- A Statefull component
+    * It connects to the redux store and resposible for data fetch and renders its child components.
+    * Contains state which handles filter
+    * Contains PokemonComponent, PokemonDetailComponent, PokemonListComponent, PokemonStatComponent
+
+2. FilterText- A stateless component
+    * Render Typeahead filter
+
+3. PokemonListComponent- 
+    * Responsible for rendering Pokemons in a grid.
+4. PokemonComponent-
+    * Renders a single Pokemon view
+5. PokemonDetailComponent-
+    * Renders details information of a Pokemon
+
+6. PokemonStatComponent-
+    * Renders stats of a Pokemon with progress bar
+
+#### Display Evolution 
+```
+    <EvolutionContainer>
+        ...
+           <PokemonEvolutionComponent>
+               ...
+                <NestedEvolutionComponent>
+                    ...
+                    <EvolutionArrowComponent>
+                        ...
+                    </EvolutionArrowComponent>
+                    <SingleEvolveComponent>
+                        ...
+                        <MoveListComponent>
+                            ...
+                        </MoveListComponent>
+                    </SingleEvolveComponent>
+                </NestedEvolutionComponent>
+           </PokemonEvolutionComponent>
+    </EvolutionContainer>
+   ``` 
     
+1. EvolutionContainer- A Statefull component
+    * It connects to the redux store and resposible for data fetch and renders its child components passing data as props.
+    * Contains PokemonEvolutionComponent, NestedEvolutionComponent, EvolutionArrowComponent, EvolutionArrowComponent
+
+3. PokemonEvolutionComponent- 
+    * Responsible for rendering recursive pokemon evolution chain view.
+    
+4. EvolutionArrowComponent-
+    * Renders a Arrow with relationship in the evolution chain.
+    
+5. SingleEvolveComponent-
+    * Renders a single pokemon with brief information
+
+6. MoveListComponent-
+    * Renders pokemon all move list
+
+#### Evolution Component recursive rendering
+Evolution JSON- 
+source: https://pokeapi.co/api/v2/evolution-chain/1
+
+    ```javascript
+        "chain": {
+            evolves_to: [
+                evolution_details:[...],
+                is_baby: false,
+                species: {...},
+                evolves_to: [
+                    evolution_details:[...],
+                    is_baby: false,
+                    species: {...},
+                    evolves_to:[...]
+                 ]
+             ]
+        }
+    ```
+    
+    Evolution api response json is recursive in nature. `PokemonEvolutionComponent` constructs a dynamic components elements by passing required config to a generic json tree traversal method which is written in `src/common/utils/renderNestedComponent.ts`.
+    
+#### API Call middleware
+`src/moddlewares/api.ts`- 
+    Middleware to handle all api axios calls. It intercepts the dispatched action and read the api configuration and fire axios calls. And     after it advance to next() with approriate action type which will later recieved to reducers. By this way we do not need to write         axios call manually in actions.
+   
+ Test Cases: TODO 
     
