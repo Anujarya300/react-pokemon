@@ -8,6 +8,7 @@ import {
     GET_POKEMON_TYPES_FAILURE,
     GET_POKEMON_TYPES_REQUEST,
     GET_POKEMON_TYPES_SUCCESS,
+    GET_POKEMON_CLEAR
 } from '../actions';
 import { Action } from '../../../common';
 
@@ -18,14 +19,16 @@ export function pokemonReducer(state: any = {}, action: Action): any {
                 loading: true,
                 success: false,
                 error: false,
-                pokemons: null,
             });
         case GET_POKEMON_SUCCESS:
+            const newPokemons = action.response.data.results;
+            const uniquePokemons = newPokemons
+                .filter((x: any) => (state.pokemons || []).find((y: any) => y.id === x.id) === undefined);
             return Object.assign({}, state, {
                 loading: false,
                 success: true,
                 error: false,
-                pokemons: action.response.data.results,
+                pokemons: (state.pokemons || []).concat(uniquePokemons),
                 count: action.response.data.count,
                 next: action.response.data.next,
                 previous: action.response.data.previous,
@@ -60,6 +63,10 @@ export function pokemonReducer(state: any = {}, action: Action): any {
         case GET_POKEMON_TYPES_FAILURE:
             return Object.assign({}, state, {
                 msg: action.error.data,
+            });
+        case GET_POKEMON_CLEAR:
+            return Object.assign({}, state, {
+                pokemons: (state.pokemons || []).slice(0, 20)
             });
     }
     return state;

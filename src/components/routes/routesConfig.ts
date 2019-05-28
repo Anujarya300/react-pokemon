@@ -1,5 +1,5 @@
-import PokemonContainer from '../pokemon/containers/pokemonContainer';
-import EvolutionContainer from '../evolution/containers/evolutionContainer';
+import PokemonContainer from '../pokemon/containers';
+import EvolutionContainer from '../evolution/containers';
 import { RouteConfigInterface } from './model';
 
 export const routes: RouteConfigInterface[] = [

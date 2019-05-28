@@ -13,6 +13,17 @@ export function getUrlParamValue(props: any, fieldName: string) {
     return params[fieldName];
 }
 
+export function getUrlFieldValue(url: string, fieldName: string): string {
+    if (!url) {
+        return "";
+    }
+    const splitArr = url.split(fieldName + "=");
+    if (splitArr.length > 1) {
+        return splitArr[1];
+    }
+    return "";
+}
+
 export function renderNestedComponent<T>(param: NestedComponentParam<T>): any {
     if (!param.parent || !param.parent.length) {
         return null;

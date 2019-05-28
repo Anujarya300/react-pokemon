@@ -11,7 +11,14 @@ export const GET_POKEMON_DETAILS_FAILURE = 'GET_POKEMON_DETAILS_FAILURE';
 export const GET_POKEMON_TYPES_REQUEST = 'GET_POKEMON_TYPES_REQUEST';
 export const GET_POKEMON_TYPES_SUCCESS = 'GET_POKEMON_TYPES_SUCCESS';
 export const GET_POKEMON_TYPES_FAILURE = 'GET_POKEMON_TYPES_FAILURE';
+export const GET_POKEMON_CLEAR = 'GET_POKEMON_CLEAR';
 
+
+function clearPokemon() {
+    return {
+        type: GET_POKEMON_CLEAR
+    }
+}
 
 function getPokemonTypes(url: string) {
     return {
@@ -23,9 +30,15 @@ function getPokemonTypes(url: string) {
     };
 }
 
+export function clearPokemonAction(): Function {
+    return function (dispatch: any, getState: Function) {
+        return dispatch(clearPokemon());
+    };
+}
+
 export function getPokemonAction(url?: string): Function {
     return function (dispatch: any, getState: Function) {
-        return getPokemon(url? url : api.getDataApiBaseUrl() + "/pokemon").then((result: any) => {
+        return getPokemon(url ? url : api.getDataApiBaseUrl() + "/pokemon").then((result: any) => {
             return dispatch(result);
         });
     };
