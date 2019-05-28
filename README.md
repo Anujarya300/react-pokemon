@@ -76,7 +76,7 @@ npm deploy
 
 Browse Url: https://anujarya300.github.io/react-pokemon/#/
 
-NOTE: I have used HashRouter instead of BroswerRouter beacuse there is some open issue with HashRouter in github pages hosting.
+NOTE: I have used HashRouter instead of BroswerRouter beacuse there is some open issue with BroswerRouter in github pages hosting.
 
 Project Overview
 ===========
