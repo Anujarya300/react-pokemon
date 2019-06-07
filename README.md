@@ -1,19 +1,49 @@
-# React-Seed Project with React > 16.8.x, redux > 4.x, typescript, webpack, eslint, enzyme, jest
+# React-Seed Project
+=======
+**Dependencies**
+
+    react > 16.8.x,
+    redux > 4.x,
+    redux-thunk > 2.3.x
+    typescript > 3.4.5, 
+    webpack > 4.32.x,
+    eslint > 5.16.x
+
 Basic version with action, reducer, router and component rendering
 
-## Steps to run
+#### Demo app: https://anujarya300.github.io/react-pokemon
+Getting Started
+============
 
-### Using yarn
-1. `yarn install`
-2. `yarn start`
+### First install all the necessary dependencies.
+``` 
+ yarn install
+ npm install
+```
 
-### Using npm
-1. `npm install`
-2. `npm start`
+### Start the development server (changes will now update live in browser)
+```
+yarn start
+npm start
+```
+To view your project, go to: http://localhost:3000/
 
-After Project starts on default port 3000 on development mode.
+
+### Build to Production
+```
+yarn build
+npm build
+```
+
+Locate your **build** folder in root directory for build artifacts.
+
 
 ### Linting using eslint (Enfore coding best practices)
-`yarn lint` or `npm lint`
+```
+yarn lint
+npm lint
+```
 
-`yarn lint-fix` or `npm lint-fix`
+Use `yarn lint-fix or npm lint-fix` to fix auto-corrected lint errors.
+
+
