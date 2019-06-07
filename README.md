@@ -1,5 +1,5 @@
-# React-Seed Project
-=======
+React-Seed Project
+==============
 **Dependencies**
 
     react > 16.8.x,
